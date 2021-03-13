@@ -1,3 +1,23 @@
 body {
     background-color: lightsteelblue;
 }
+
+.content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    background-color: lightslategray;
+    width: 120px;
+    height: 200px;
+}
+
+.display {
+    background-color: gray;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 30px;
+}
