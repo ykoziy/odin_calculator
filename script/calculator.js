@@ -1,5 +1,48 @@
-function operate(operator, a, b) {
-    switch (operator) {
+const calculatorDisplay = document.querySelector(".display");
+const digitButtons = document.querySelectorAll(".btn-digit");
+const operationButtons = document.querySelectorAll(".btn-oper");
+const equalsButton = document.querySelector(".btn-equals");
+const clearButton = document.querySelector(".btn-clear");
+const display = document.querySelector(".display");
+
+let firstOperand;
+let secondOperand;
+let operation;
+
+clearButton.addEventListener("click", clearDisplay);
+equalsButton.addEventListener("click", compute);
+
+digitButtons.forEach((button) => {
+    button.addEventListener("click", addDigit);
+})
+
+operationButtons.forEach((button) => {
+    button.addEventListener("click", handleOperation);
+})
+
+function addDigit() {
+    display.textContent += this.dataset.digit;
+}
+
+function handleOperation() {
+    firstOperand = display.textContent.trim();
+    operation = this.dataset.oper;
+    clearDisplay();  
+}
+
+function compute() {
+    secondOperand = display.textContent.trim();
+    display.textContent = operate(operation, firstOperand, secondOperand);
+}
+
+function clearDisplay() {
+    display.textContent = "";
+}
+
+function operate(operation, a, b) {
+    a = Number(a);
+    b = Number(b);
+    switch (operation) {
         case "+":
             return add(a, b);
         case "-":
