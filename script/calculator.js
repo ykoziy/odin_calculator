@@ -11,7 +11,7 @@ let secondOperand;
 let isNewInput = true;
 let operation = null;
 
-clearButton.addEventListener("click", clearDisplay);
+clearButton.addEventListener("click", clearCalculator);
 equalsButton.addEventListener("click", compute);
 dotButton.addEventListener("click", handleDot);
 
@@ -60,6 +60,14 @@ function compute() {
 function clearDisplay() {
     display.textContent = "";
     isNewInput = false;
+}
+
+function clearCalculator() {
+    firstOperand = "";
+    secondOperand = "";
+    isNewInput = true;
+    operation = null;
+    display.textContent = "";
 }
 
 function operate(operation, a, b) {
