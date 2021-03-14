@@ -7,7 +7,8 @@ const display = document.querySelector(".display");
 
 let firstOperand;
 let secondOperand;
-let operation;
+let isNewInput = true;
+let operation = null;
 
 clearButton.addEventListener("click", clearDisplay);
 equalsButton.addEventListener("click", compute);
@@ -21,13 +22,19 @@ operationButtons.forEach((button) => {
 })
 
 function addDigit() {
+    if (isNewInput) {
+        clearDisplay();
+    }
     display.textContent += this.dataset.digit;
 }
 
 function handleOperation() {
+    if (operation) {
+        compute();
+    }
     firstOperand = display.textContent.trim();
     operation = this.dataset.oper;
-    clearDisplay();  
+    isNewInput = true;
 }
 
 function compute() {
@@ -37,6 +44,7 @@ function compute() {
 
 function clearDisplay() {
     display.textContent = "";
+    isNewInput = false;
 }
 
 function operate(operation, a, b) {
