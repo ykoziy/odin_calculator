@@ -4,6 +4,7 @@ const operationButtons = document.querySelectorAll(".btn-oper");
 const equalsButton = document.querySelector(".btn-equals");
 const clearButton = document.querySelector(".btn-clear");
 const display = document.querySelector(".display");
+const dotButton = document.querySelector(".btn-dot");
 
 let firstOperand;
 let secondOperand;
@@ -12,6 +13,7 @@ let operation = null;
 
 clearButton.addEventListener("click", clearDisplay);
 equalsButton.addEventListener("click", compute);
+dotButton.addEventListener("click", handleDot);
 
 digitButtons.forEach((button) => {
     button.addEventListener("click", addDigit);
@@ -26,6 +28,19 @@ function addDigit() {
         clearDisplay();
     }
     display.textContent += this.dataset.digit;
+}
+
+function handleDot() {
+    if (isNewInput) {
+        clearDisplay();
+    }
+    if (display.textContent == "") {
+        display.textContent = "0";
+    }
+    if (display.textContent.includes(".")) {
+        return;
+    }
+    display.textContent += ".";
 }
 
 function handleOperation() {
