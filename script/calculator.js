@@ -15,6 +15,7 @@ let operation = null;
 clearButton.addEventListener("click", clearCalculator);
 equalsButton.addEventListener("click", handleEquals);
 dotButton.addEventListener("click", handleDot);
+document.addEventListener("keydown", handleNumPadButtons);
 
 digitButtons.forEach((button) => {
     button.addEventListener("click", addDigit);
@@ -24,11 +25,16 @@ operationButtons.forEach((button) => {
     button.addEventListener("click", handleOperation);
 })
 
-function addDigit() {
+function addDigit(num) {
     if (isNewInput) {
         clearDisplay();
     }
-    display.textContent += this.dataset.digit;
+    if (num) {
+        display.textContent += num;
+    } else {
+        display.textContent += this.dataset.digit;
+    }
+    
 }
 
 function handleDot() {
@@ -44,12 +50,16 @@ function handleDot() {
     display.textContent += ".";
 }
 
-function handleOperation() {
+function handleOperation(op) {
     if (operation && !isEqualsRepeated) {
         compute();
     }
     firstOperand = display.textContent.trim();
-    operation = this.dataset.oper;
+    if (op) {
+        operation = op;
+    } else {
+        operation = this.dataset.oper;
+    }
     isNewInput = true;
     isEqualsRepeated = false;
 }
@@ -86,6 +96,23 @@ function clearCalculator() {
     isEqualsRepeated = false;
     operation = null;
     display.textContent = "";
+}
+
+function handleNumPadButtons(event) {
+    if (event.defaultPrevented) {
+        return;
+    }
+
+    const operations = "/*-+";
+    let key = event.key;
+
+    if (key >= "0" && key <= "9") {
+        addDigit(key);
+    } else if ("/*-+".includes(key)) {
+        handleOperation(key);   
+    } else if (key === "Enter") {
+        handleEquals();
+    }
 }
 
 function operate(operation, a, b) {
