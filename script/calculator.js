@@ -45,7 +45,7 @@ function handleDot() {
 }
 
 function handleOperation() {
-    if (operation) {
+    if (operation && !isEqualsRepeated) {
         compute();
     }
     firstOperand = display.textContent.trim();
