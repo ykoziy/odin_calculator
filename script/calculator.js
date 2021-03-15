@@ -9,10 +9,11 @@ const dotButton = document.querySelector(".btn-dot");
 let firstOperand;
 let secondOperand;
 let isNewInput = true;
+let isEqualsRepeated = false;
 let operation = null;
 
 clearButton.addEventListener("click", clearCalculator);
-equalsButton.addEventListener("click", compute);
+equalsButton.addEventListener("click", handleEquals);
 dotButton.addEventListener("click", handleDot);
 
 digitButtons.forEach((button) => {
@@ -50,11 +51,27 @@ function handleOperation() {
     firstOperand = display.textContent.trim();
     operation = this.dataset.oper;
     isNewInput = true;
+    isEqualsRepeated = false;
 }
 
 function compute() {
+    if (isNewInput) {
+        return;
+    }
     secondOperand = display.textContent.trim();
     display.textContent = operate(operation, firstOperand, secondOperand);
+    operation = null;
+}
+
+function handleEquals() {
+    if (!isEqualsRepeated) {
+        secondOperand = display.textContent.trim();
+        isEqualsRepeated = true;
+    } else {
+        firstOperand = display.textContent.trim();
+    }
+    display.textContent = operate(operation, firstOperand, secondOperand);
+    isNewInput = true;
 }
 
 function clearDisplay() {
@@ -66,6 +83,7 @@ function clearCalculator() {
     firstOperand = "";
     secondOperand = "";
     isNewInput = true;
+    isEqualsRepeated = false;
     operation = null;
     display.textContent = "";
 }
