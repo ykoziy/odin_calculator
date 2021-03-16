@@ -28,7 +28,7 @@ operationButtons.forEach((button) => {
 })
 
 function addDigit(e, num) {
-    if (isNewInput) {
+    if (isNewInput || display.textContent === "0") {
         clearDisplay();
     }
     if (num) {
@@ -45,7 +45,7 @@ function handleDot() {
     }
     if (display.textContent == "") {
         display.textContent = "0";
-    }
+    }    
     if (display.textContent.includes(".")) {
         return;
     }
@@ -97,7 +97,7 @@ function clearCalculator() {
     isNewInput = true;
     isEqualsRepeated = false;
     operation = null;
-    display.textContent = "";
+    display.textContent = "0";
 }
 
 function handleDelete() {
