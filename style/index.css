@@ -1,5 +1,18 @@
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+:root {
+    --primaryFont: "PT Mono";
+    --baseFontSize: 1rem;
+    --displayFontSize: 2.5rem;
+    --buttonFontSize: 1.5rem;
+}
+
 body {
-    background-color: lightsteelblue;
+    font-size: var(--baseFontSize);
+    background: rgb(5,15,48);
+    background: linear-gradient(90deg, rgba(5,15,48,1) 0%, rgba(6,49,91,1) 40%, rgba(6,49,91,1) 60%, rgba(5,15,48,1) 100%);
 }
 
 .content {
@@ -10,14 +23,81 @@ body {
 }
 
 .calculator {
-    background-color: lightslategray;
-    width: 120px;
-    height: 200px;
+    min-height: 200px;
+    width: 400px;
+    padding: 20px;
+    padding-top: 10px;
+    border: 2px solid #e26ef6;
+    box-shadow:0px 0px 30px 10px #e26ef6 ,0px 0px 15px 0px #e26ef6 inset;
+    border-radius: 15px;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow:0px 0px 30px 10px #e26ef6 ,0px 0px 15px 0px #e26ef6 inset;
+    }
+    to {
+        box-shadow:0px 0px 40px 20px #f49abb ,0px 0px 10px 0px #f49abb inset;
+        border-color: #f49abb;
+    }
 }
 
 .display {
-    background-color: gray;
+    font-family: var(--primaryFont);
+    font-size: var(--displayFontSize);
+    font-weight: bold;
+    color: #c12517;
+    background-color: #000;
     margin-bottom: 10px;
     margin-top: 10px;
-    height: 30px;
+    height: 70px;
+    text-align: right;
+    line-height: 70px;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #e26ef6;
+}
+
+button {
+    outline: none;
+    background-color: transparent;
+    border: 2px solid #e26ef6;
+    color: #e26ef6;
+    font-family: var(--primaryFont);
+    font-size: var(--buttonFontSize);
+    height: 70px;
+    min-width: 70px;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    color: #f8cfa7;
+    border-color: #f8cfa7;
+    text-shadow: 0px 0px 3px #f8cfa7;
+    box-shadow: 0px 0px 10px 3px #f8cfa7 ,0px 0px 10px 0px #f8cfa7 inset;
+}
+button:focus {
+    color: #f8cfa7;
+    border-color: #f8cfa7;
+    text-shadow: 0px 0px 3px #f8cfa7;
+    box-shadow: 0px 0px 10px 3px #f8cfa7 ,0px 0px 10px 0px #f8cfa7 inset;   
+}
+
+button:active {
+    color: #6feafc;
+    border-color: #6feafc;
+    text-shadow: 0px 0px 3px #6feafc;
+    box-shadow: 0px 0px 10px 3px #6feafc ,0px 0px 10px 0px #6feafc inset;   
+}
+
+.btn-clear {
+    grid-row-start: 6;
+    grid-column: span 2;
+}
+
+.button-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;  
 }
