@@ -114,7 +114,7 @@ function handleNumPadButtons(event) {
 
     const operations = "/*-+";
     let key = event.key;
-    console.log(key)
+
     if (key >= "0" && key <= "9") {
         addDigit(undefined, key);
     } else if ("/*-+".includes(key)) {
