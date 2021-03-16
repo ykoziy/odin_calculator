@@ -76,6 +76,9 @@ function compute() {
 }
 
 function handleEquals() {
+    if (operation == null) {
+        return;
+    }
     if (!isEqualsRepeated) {
         secondOperand = display.textContent.trim();
         isEqualsRepeated = true;
