@@ -3,6 +3,7 @@ const digitButtons = document.querySelectorAll(".btn-digit");
 const operationButtons = document.querySelectorAll(".btn-oper");
 const equalsButton = document.querySelector(".btn-equals");
 const clearButton = document.querySelector(".btn-clear");
+const deleteButton = document.querySelector(".btn-delete");
 const display = document.querySelector(".display");
 const dotButton = document.querySelector(".btn-dot");
 
@@ -13,6 +14,7 @@ let isEqualsRepeated = false;
 let operation = null;
 
 clearButton.addEventListener("click", clearCalculator);
+deleteButton.addEventListener("click", handleDelete);
 equalsButton.addEventListener("click", handleEquals);
 dotButton.addEventListener("click", handleDot);
 document.addEventListener("keydown", handleNumPadButtons);
@@ -96,6 +98,10 @@ function clearCalculator() {
     isEqualsRepeated = false;
     operation = null;
     display.textContent = "";
+}
+
+function handleDelete() {
+    display.textContent = display.textContent.slice(0, -1);
 }
 
 function handleNumPadButtons(event) {
