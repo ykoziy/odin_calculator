@@ -107,9 +107,9 @@ function handleNumPadButtons(event) {
     let key = event.key;
 
     if (key >= "0" && key <= "9") {
-        addDigit(key);
+        addDigit(undefined, key);
     } else if ("/*-+".includes(key)) {
-        handleOperation(key);   
+        handleOperation(undefined, key);   
     } else if (key === "Enter") {
         handleEquals();
     }
