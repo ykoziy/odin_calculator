@@ -25,7 +25,7 @@ operationButtons.forEach((button) => {
     button.addEventListener("click", handleOperation);
 })
 
-function addDigit(num) {
+function addDigit(e, num) {
     if (isNewInput) {
         clearDisplay();
     }
@@ -50,7 +50,7 @@ function handleDot() {
     display.textContent += ".";
 }
 
-function handleOperation(op) {
+function handleOperation(e, op) {
     if (operation && !isEqualsRepeated) {
         compute();
     }
