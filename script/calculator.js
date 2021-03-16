@@ -71,7 +71,7 @@ function compute() {
         return;
     }
     secondOperand = display.textContent.trim();
-    display.textContent = operate(operation, firstOperand, secondOperand);
+    display.textContent = roundNumber(operate(operation, firstOperand, secondOperand));
     operation = null;
 }
 
@@ -85,7 +85,7 @@ function handleEquals() {
     } else {
         firstOperand = display.textContent.trim();
     }
-    display.textContent = operate(operation, firstOperand, secondOperand);
+    display.textContent = roundNumber(operate(operation, firstOperand, secondOperand));
     isNewInput = true;
 }
 
@@ -148,6 +148,10 @@ function operate(operation, a, b) {
         default:
             return null;
     }
+}
+
+function roundNumber(num) {
+    return Math.round(num*100)/100;
 }
 
 function add(a, b) {
