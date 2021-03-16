@@ -51,12 +51,13 @@ body {
     background-color: #000;
     margin-bottom: 10px;
     margin-top: 10px;
-    height: 70px;
+    min-height: 70px;
     text-align: right;
     line-height: 70px;
     padding: 5px;
     margin-bottom: 15px;
     border: 1px solid #e26ef6;
+    word-break: break-all;
 }
 
 button {
