@@ -123,6 +123,8 @@ function handleNumPadButtons(event) {
         handleEquals();
     } else if (key === "Backspace") {
         handleDelete();
+    } else if (key === ".") {
+        handleDot();
     }
 }
 
